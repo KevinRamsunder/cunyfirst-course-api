@@ -1,9 +1,11 @@
 package CunyFirstParser.containers;
 
+/** Parent class for Class Heading */
+
 public abstract class Heading {
 
-   private String title;
-   private int quantity;
+   private String title; // title of class heading
+   private int quantity; // number of sections within heading
 
    public Heading(String title, int quantity) {
       this.title = title;

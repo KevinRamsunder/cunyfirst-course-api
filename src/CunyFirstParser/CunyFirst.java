@@ -1,7 +1,9 @@
 package CunyFirstParser;
 
+/** Data used for parsing all HTML information found on the webpages. */
 public interface CunyFirst {
 
+   // HTML id fields for important data found of CunyFirst
    public static final String instHtmlID = "CLASS_SRCH_WRK2_INSTITUTION$42$";
    public static final String termHtmlID = "CLASS_SRCH_WRK2_STRM$45$";
    public static final String deptHtmlID = "SSR_CLSRCH_WRK_SUBJECT_SRCH$0";
@@ -23,16 +25,9 @@ public interface CunyFirst {
    public static final String nbrID = "MTG_CLASS_NBR";
    public static final String lecID = "MTG_CLASSNAME";
    public static final String headingID = "win0divGPSSR_CLSRSLT_WRK_GROUPBOX2";
-   public static final String cPerHeadingID = "ACE_$ICField97";
+   public static final String cPerHeadingID = "ACE_$ICField104";
 
-   public static final String longWebsiteURL = "https://hrsa.cunyfirst.cuny.edu/psc/cnyhcprd/GUEST/HRMS/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL?PortalActualURL=https%3a%2f%2fhrsa.cunyfirst.cuny.edu%2fpsc%2fcnyhcprd%2fGUEST%2fHRMS%2fc%2fCOMMUNITY_ACCESS.CLASS_SEARCH.GBL&amp;PortalContentURL=https%3a%2f%2fhrsa.cunyfirst.cuny.edu%2fpsc%2fcnyhcprd%2fGUEST%2fHRMS%2fc%2fCOMMUNITY_ACCESS.CLASS_SEARCH.GBL&amp;PortalContentProvider=HRMS&amp;PortalCRefLabel=Class%20Search&amp;PortalRegistryName=GUEST&amp;PortalServletURI=https%3a%2f%2fhome.cunyfirst.cuny.edu%2fpsp%2fcnyepprd%2f&amp;PortalURI=https%3a%2f%2fhome.cunyfirst.cuny.edu%2fpsc%2fcnyepprd%2f&amp;PortalHostNode=ENTP&amp;NoCrumbs=yes";
-   public static final String errorMessage = "There seems to be a connection issue with CUNYFirst.\nTry again, or come back later.";
-   public static final String nullResultsReturnedError = "There was either a communication error with CUNYFirst or\nthe search returned no results that matched the criteria specified.";
-
-   public static String findClassCapacity = "span[id=" + classCapacityID + "]";
-   public static String findClassTotal = "span[id=" + classTotalID + "]";
-   public static String findAvailableSeats = "span[id=" + availableSeatsID + "]";
-
+   // JSoup commands for parsing result page information
    public static String rPageFindTime = "[id^=" + timeID + "]";
    public static String rPageFindRoom = "[id^=" + roomID + "]";
    public static String rPageFindInstr = "[id^=" + instrID + "]";
@@ -42,5 +37,14 @@ public interface CunyFirst {
    public static String rPageFindHeading = "div[id^=" + headingID + "]";
    public static String rPagePerHeading = "table[id^=" + cPerHeadingID + "]";
    
-   /** END ^^ */
+   // JSoup commands for parsing class enrollment information
+   public static String findClassCapacity = "span[id=" + classCapacityID + "]";
+   public static String findClassTotal = "span[id=" + classTotalID + "]";
+   public static String findAvailableSeats = "span[id=" + availableSeatsID + "]";
+   
+   
+   // Error codes which don't belong here... will move later
+   public static final String longWebsiteURL = "https://hrsa.cunyfirst.cuny.edu/psc/cnyhcprd/GUEST/HRMS/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL?PortalActualURL=https%3a%2f%2fhrsa.cunyfirst.cuny.edu%2fpsc%2fcnyhcprd%2fGUEST%2fHRMS%2fc%2fCOMMUNITY_ACCESS.CLASS_SEARCH.GBL&amp;PortalContentURL=https%3a%2f%2fhrsa.cunyfirst.cuny.edu%2fpsc%2fcnyhcprd%2fGUEST%2fHRMS%2fc%2fCOMMUNITY_ACCESS.CLASS_SEARCH.GBL&amp;PortalContentProvider=HRMS&amp;PortalCRefLabel=Class%20Search&amp;PortalRegistryName=GUEST&amp;PortalServletURI=https%3a%2f%2fhome.cunyfirst.cuny.edu%2fpsp%2fcnyepprd%2f&amp;PortalURI=https%3a%2f%2fhome.cunyfirst.cuny.edu%2fpsc%2fcnyepprd%2f&amp;PortalHostNode=ENTP&amp;NoCrumbs=yes";
+   public static final String errorMessage = "There seems to be a connection issue with CUNYFirst.\nTry again, or come back later.";
+   public static final String nullResultsReturnedError = "There was either a communication error with CUNYFirst or\nthe search returned no results that matched the criteria specified.";
 }

@@ -7,6 +7,8 @@ import org.jsoup.select.Elements;
 
 import CunyFirstParser.CunyFirst;
 
+/** Parses information from class enrollment info HTML. */
+
 public class EnrollmentInfoParser {
 
    private int classCapacity;

@@ -1,10 +1,9 @@
 package WebAgent;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
-import com.gargoylesoftware.htmlunit.WebRequest;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlSelect;
-import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+import com.gargoylesoftware.htmlunit.*;
+import com.gargoylesoftware.htmlunit.html.*;
+
+/** Agent responsible for facilitating web page access to the user */
 
 public abstract class SearchAgent extends WebAgent {
 
@@ -12,30 +11,22 @@ public abstract class SearchAgent extends WebAgent {
       super();
    }
 
-   protected HtmlSelect getHtmlSelectElement(String id) {
-      HtmlSelect selectElement = (HtmlSelect) page.getElementById(id);
-
-      while (selectElement == null) {
-         selectElement = (HtmlSelect) page.getElementById(id);
-         waitForBackground();
-      }
-      return selectElement;
+   /** Find HTML text element on webpage */
+   protected HtmlTextInput getHtmlTextInput(String id) {
+      return (HtmlTextInput) page.getElementById(id);
    }
 
+   /** Find HTML drop down element on webpage */
+   protected HtmlSelect getHtmlSelectElement(String id) {
+      return (HtmlSelect) page.getElementById(id);
+   }
+
+   /** Select a drop down value from this SELECT element */
    protected void setHtmlSelectElementValue(HtmlSelect element, String key) {
       try {
          element.setSelectedAttribute(element.getOptionByValue(key), true);
       } catch (ElementNotFoundException e) {
          e.printStackTrace();
       }
-   }
-
-   protected WebRequest getWebRequestData() {
-      HtmlForm win0 = page.getFormByName("win0");
-      return win0.getWebRequest(null);
-   }
-
-   protected HtmlTextInput getHtmlTextInput(String id) {
-      return (HtmlTextInput) page.getElementById(id);
    }
 }

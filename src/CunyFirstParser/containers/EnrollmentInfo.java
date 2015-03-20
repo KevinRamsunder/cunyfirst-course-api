@@ -2,9 +2,12 @@ package CunyFirstParser.containers;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import CunyFirstParser.parsers.EnrollmentInfoParser;
 
+/**
+ * Structure for holding available seats, enrollment total, and available seats
+ * that belong to a class section.
+ */
 public class EnrollmentInfo {
 
    private int classCapacity;
@@ -17,16 +20,24 @@ public class EnrollmentInfo {
       availableSeats = enrollmentInfo.getAvailable();
    }
 
+   /**
+    * Determines if two enrollment informations are equal to each other. Used
+    * for finding changes in class enrollment overtime.
+    */
    public boolean contentEquals(EnrollmentInfo e) {
       return (e.classCapacity == this.classCapacity)
             && (e.enrollmentTotal == this.enrollmentTotal)
             && (e.availableSeats == this.availableSeats);
    }
 
+   /**
+    * Print enrollment information. appendTime parameter allows you to choose if
+    * you want this information timestamped.
+    */
    public String display(boolean appendTime) {
       StringBuffer display = new StringBuffer();
 
-      if (appendTime) {
+      if (appendTime) { // add a timestamp to data
          display.append(this.getTime() + "\n");
       }
 
@@ -38,10 +49,22 @@ public class EnrollmentInfo {
       return display.toString();
    }
 
+   /** Produce a timestamp */
    private String getTime() {
       Calendar c = Calendar.getInstance();
       SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss a");
-
       return df.format(c.getTime());
+   }
+
+   public int getClassCapacity() {
+      return classCapacity;
+   }
+
+   public int getEnrollmentTotal() {
+      return enrollmentTotal;
+   }
+
+   public int getAvailableSeats() {
+      return availableSeats;
    }
 }

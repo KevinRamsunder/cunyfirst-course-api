@@ -2,6 +2,8 @@ package CunyFirstParser.parsers;
 
 import org.jsoup.nodes.Element;
 
+/** Parses information from class section HTML. */
+
 public class ClassSectionParser {
 
    private String nbr;

@@ -1,111 +1,74 @@
 package WebAgent;
 
-import java.util.List;
+import CunyFirstParser.*;
+import CunyFirstParser.containers.*;
+import CunyFirstParser.parsers.*;
 
-import CunyFirstParser.ClassStructure;
-import CunyFirstParser.CunyFirst;
-import CunyFirstParser.MainParser;
-import CunyFirstParser.containers.ClassSection;
-import CunyFirstParser.containers.EnrollmentInfo;
-import CunyFirstParser.parsers.EnrollmentInfoParser;
+import com.gargoylesoftware.htmlunit.html.*;
 
-import com.gargoylesoftware.htmlunit.WebRequest;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlSelect;
-import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
-import com.gargoylesoftware.htmlunit.util.NameValuePair;
+/** Agent responsible for handling user operations directly on the webpage */
 
 public class UserAgent extends SearchAgent {
 
+   /** Initialize all requirement to get and modify connection to CunyFirst */
    public UserAgent() {
       super();
    }
 
+   /**
+    * Submit query to webpage, parse all data, and return structured data to the
+    * user. 
+    */
+   public ClassStructure submitAndGetResults() {
+      showClosedClasses(); // get closed classes in the results
+      submitQueryToWebpage(); // submit query
+      
+      MainParser parser = new MainParser(page.asXml()); // process results
+      return parser.getClassStructure(); // return findings
+   }
+
+   /** Set the webpage with the institution you are looking for */
    public void setInstitution(String institutionKey) {
       HtmlSelect institution = getHtmlSelectElement(CunyFirst.instHtmlID);
       setHtmlSelectElementValue(institution, institutionKey);
       waitForBackground();
    }
 
+   /** Set the webpage with the department you are looking for */
    public void setDepartment(String departmentKey) {
       HtmlSelect department = getHtmlSelectElement(CunyFirst.deptHtmlID);
       setHtmlSelectElementValue(department, departmentKey);
       waitForBackground();
    }
 
+   /** Set the webpage with the term you are looking for */
    public void setTerm(String termKey) {
       HtmlSelect term = getHtmlSelectElement(CunyFirst.termHtmlID);
       setHtmlSelectElementValue(term, termKey);
       waitForBackground();
    }
 
+   /** Set the webpage with the classID (NBR) you are looking for */
    public void setClassNBR(String classNumber) {
       HtmlTextInput classNumberField = getHtmlTextInput(CunyFirst.nbrHtmlID);
       classNumberField.setText(classNumber);
       waitForBackground();
    }
 
-   private void showClosedClasses() {
-      HtmlSelect courseNum = getHtmlSelectElement(CunyFirst.courseNumberID);
-      HtmlTextInput classNumberField = getHtmlTextInput(CunyFirst.rangeID);
-      setHtmlSelectElementValue(courseNum, "G");
-      classNumberField.setText(Integer.toString(0));
-      waitForBackground();
-   }
-
+   /** Process a classes enrollment info, and add it to the given section */
    public void attachEnrollmentInfo(ClassSection section) {
       HtmlPage resultPage = this.clickClass(section);
       String xml = resultPage.asXml();
       EnrollmentInfoParser infoParser = new EnrollmentInfoParser(xml);
       section.attachEnrollmentInfo(new EnrollmentInfo(infoParser));
    }
-
-   private HtmlPage clickClass(ClassSection section) {
-      WebRequest requestSettings = getWebRequestData();
-      List<NameValuePair> list = requestSettings.getRequestParameters();
-      NameValuePair clickCode = new NameValuePair("ICAction",
-            section.getHtmlKey());
-
-      for (int i = 0; i < list.size(); ++i) {
-         String checkName = list.get(i).getName();
-         if (checkName.equalsIgnoreCase("ICAction")) {
-            requestSettings.getRequestParameters().set(i, clickCode);
-            break;
-         }
-      }
-
-      return newlyGeneratedPage(requestSettings);
-   }
-
-   public ClassStructure submitAndGetResults() {
-      submit();
-      MainParser parser = new MainParser(page.asXml());
-      return parser.getClassStructure();
-   }
-
-   private void submit() {
-      showClosedClasses();
-      requestSettings = getWebRequestData();
-      List<NameValuePair> list = requestSettings.getRequestParameters();
-
-      NameValuePair submitCode = new NameValuePair(CunyFirst.submitCodeName,
-            CunyFirst.submitCodeValue);
-      NameValuePair checkBoxCode = new NameValuePair(CunyFirst.checkboxHtmlID,
-            "N");
-
-      for (int i = 0; i < list.size(); ++i) {
-         String checkName = list.get(i).getName();
-
-         if (checkName.equalsIgnoreCase("ICAction")) {
-            requestSettings.getRequestParameters().set(i, submitCode);
-         }
-
-         if (checkName.equalsIgnoreCase(CunyFirst.checkboxHtmlID)) {
-            requestSettings.getRequestParameters().set(i, checkBoxCode);
-         }
-      }
-
-      // submit with updated html code
-      updatePage();
+   
+   /** Manipulate CunyFirst into showing all classes, open or closed */
+   private void showClosedClasses() {
+      HtmlSelect courseNum = getHtmlSelectElement(CunyFirst.courseNumberID);
+      HtmlTextInput classNumberField = getHtmlTextInput(CunyFirst.rangeID);
+      setHtmlSelectElementValue(courseNum, "G");
+      classNumberField.setText(Integer.toString(0));
+      waitForBackground();
    }
 }

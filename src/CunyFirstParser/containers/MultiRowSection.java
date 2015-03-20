@@ -1,8 +1,8 @@
 package CunyFirstParser.containers;
 
-import CunyFirstParser.parsers.ClassSectionParser;
-import CunyFirstParser.parsers.MultiSectionParser;
-import CunyFirstParser.parsers.SectionParser;
+import CunyFirstParser.parsers.*;
+
+/** Multi-Row sections contain multiple attributes per line per class section. */
 
 public class MultiRowSection extends ClassSection {
 
@@ -19,6 +19,7 @@ public class MultiRowSection extends ClassSection {
    }
 
    @Override
+   /** Overview of data */
    public String sectionDisplay() {
       StringBuilder display = new StringBuilder();
 
@@ -36,6 +37,7 @@ public class MultiRowSection extends ClassSection {
    }
 
    @Override
+   /** More in depth printing of data */
    public String inDepthDisplay() {
       StringBuilder display = new StringBuilder();
 

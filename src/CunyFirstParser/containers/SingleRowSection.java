@@ -1,8 +1,8 @@
 package CunyFirstParser.containers;
 
-import CunyFirstParser.parsers.ClassSectionParser;
-import CunyFirstParser.parsers.SectionParser;
-import CunyFirstParser.parsers.SingleSectionParser;
+import CunyFirstParser.parsers.*;
+
+/** Multi-Row sections contain multiple attributes per line per class section. */
 
 public class SingleRowSection extends ClassSection {
 

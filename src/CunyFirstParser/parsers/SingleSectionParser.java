@@ -2,6 +2,8 @@ package CunyFirstParser.parsers;
 
 import org.jsoup.nodes.Element;
 
+/** Parses information from single class section HTML. */
+
 public class SingleSectionParser extends SectionParser {
 
    private String time;
