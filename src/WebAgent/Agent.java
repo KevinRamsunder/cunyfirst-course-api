@@ -16,7 +16,7 @@ public abstract class Agent {
    }
 
    private void init() {
-      webClient = new WebClient(BrowserVersion.FIREFOX_17); // User Agent
+      webClient = new WebClient(BrowserVersion.FIREFOX_24); // User Agent
       webClient.getOptions().setCssEnabled(false); // Turn off CSS
       webClient.getOptions().setJavaScriptEnabled(true); // Javascript is required
       webClient.getOptions().setThrowExceptionOnScriptError(false); // Quiet error throwing
