@@ -18,7 +18,6 @@ public class MainParser {
 
    public MainParser(String html) {
       // parse data and create class structure
-      classStructure = new ClassStructure();
       Document doc = Jsoup.parse(html);
       createClassStructure(doc);
    }
@@ -36,6 +35,9 @@ public class MainParser {
    private void createClassStructure(Document doc) {
       // Parse and the store the results
       ResultPageParser parser = new ResultPageParser(doc);
+      
+      // initialize structure with numbers of headers (improves arrayList)
+      this.classStructure = new ClassStructure(parser.headingSize());
 
       // Add all class headings
       for (int i = 0; i < parser.headingSize(); i++) {

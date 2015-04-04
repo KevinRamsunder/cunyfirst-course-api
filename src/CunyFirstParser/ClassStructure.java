@@ -18,6 +18,10 @@ public class ClassStructure {
       this.classHeadings = new ArrayList<ClassHeading>();
    }
 
+   public ClassStructure(int numberOfHeaders) {
+      this.classHeadings = new ArrayList<ClassHeading>(numberOfHeaders);
+   }
+   
    public ClassStructure(List<ClassHeading> classHeadings) {
       this.classHeadings = classHeadings;
    }
