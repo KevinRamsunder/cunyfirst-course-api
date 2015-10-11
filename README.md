@@ -27,5 +27,5 @@ An Android application is also in development and it will mimic the features of 
 ###Note
 I have been working on this project since mid-2013. During this time, CunyFirst's client code has been constantly changing, and continues to do so today.
 Each time, my code has to be refactored; this is the nature of web-scraping applications.
-Luckily, I feel confident in the quality of this code to attest that is fairly straightforward to re-adapt the existing code to the new client code. 
+Luckily, I feel confident in the quality of this code to attest that it is fairly straightforward to re-adapt the existing code to the new client code. 
 I have done so many times at this point to get the program to work in time for course scheduling.
