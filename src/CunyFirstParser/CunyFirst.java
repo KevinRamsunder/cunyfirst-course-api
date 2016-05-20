@@ -4,8 +4,8 @@ package CunyFirstParser;
 public interface CunyFirst {
 
    // HTML id fields for important data found of CunyFirst
-   public static final String instHtmlID = "CLASS_SRCH_WRK2_INSTITUTION$42$";
-   public static final String termHtmlID = "CLASS_SRCH_WRK2_STRM$45$";
+   public static final String instHtmlID = "CLASS_SRCH_WRK2_INSTITUTION$31$";
+   public static final String termHtmlID = "CLASS_SRCH_WRK2_STRM$35$";
    public static final String deptHtmlID = "SSR_CLSRCH_WRK_SUBJECT_SRCH$0";
    public static final String nbrHtmlID = "SSR_CLSRCH_WRK_CLASS_NBR$10";
    public static final String checkboxHtmlID = "SSR_CLSRCH_WRK_SSR_OPEN_ONLY$chk$5";
@@ -24,8 +24,8 @@ public interface CunyFirst {
    public static final String openOrClosedID = "SSSIMAGECENTER";
    public static final String nbrID = "MTG_CLASS_NBR";
    public static final String lecID = "MTG_CLASSNAME";
-   public static final String headingID = "win0divGPSSR_CLSRSLT_WRK_GROUPBOX2";
-   public static final String cPerHeadingID = "ACE_$ICField104";
+   public static final String headingID = "win0divSSR_CLSRSLT_WRK_GROUPBOX2GP";
+   public static final String cPerHeadingID = "ACE_$ICField48";
 
    // JSoup commands for parsing result page information
    public static String rPageFindTime = "[id^=" + timeID + "]";
