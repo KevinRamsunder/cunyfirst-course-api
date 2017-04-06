@@ -1,6 +1,6 @@
 # CunyFirst Course Schedule API
 
-###About
+### About
 My personal project to make scheduling classes each term a little less stressful.
 
 After many version changes in the client code, a working build has finally been released for the Spring 2015 term. 
@@ -9,7 +9,7 @@ You can view a sample execution of this program [here.](https://github.com/Kevin
 
 
 
-###Features
+### Features
 This is a Java application that remotely queries CunyFirst course schedule table. 
 
 The first major feature is allowing the user to access this information without user credentials, further streamlining the process.
@@ -24,7 +24,7 @@ One feature that is currently in development is the GUI for easy user interactio
 An Android application is also in development and it will mimic the features of this program. The development is ongoing, albeit rather slowly.
 
 
-###Note
+### Note
 I have been working on this project since mid-2013. During this time, CunyFirst's client code has been constantly changing, and continues to do so today.
 Each time, my code has to be refactored; this is the nature of web-scraping applications.
 Luckily, I feel confident in the quality of this code to attest that it is fairly straightforward to re-adapt the existing code to the new client code. 
