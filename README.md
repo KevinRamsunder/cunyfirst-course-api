@@ -1,5 +1,7 @@
 # CunyFirst Course Schedule API
 
+2018 Update: Pretty sure this thing is broken. But it's nice to look at.
+
 ### About
 My personal project to make scheduling classes each term a little less stressful.
 
